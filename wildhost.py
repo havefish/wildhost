@@ -38,7 +38,8 @@ def is_wc(s):
 def check(s):
     for c in gen(s):
         if is_wc(c):
-            return c
+            return s, c
+    return s, None
 
 
 def check_static(c, ws):
@@ -53,9 +54,11 @@ def check_all(l):
     for c in set(l):
         w = check_static(c, ws)
         if w:
+            print('static')
             yield c, w
             continue
         
+        print('network')
         w = check(c)
         if w:
             ws.add(w)
