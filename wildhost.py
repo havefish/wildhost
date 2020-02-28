@@ -39,3 +39,25 @@ def check(s):
     for c in gen(s):
         if is_wc(c):
             return c
+
+
+def check_static(c, ws):
+    for w in ws:
+        if c.endswith(f'.{w}'):
+            return w
+
+
+def check_all(l):
+    ws = set()
+    
+    for c in set(l):
+        w = check_static(c, ws)
+        if w:
+            yield c, w
+            continue
+        
+        w = check(c)
+        if w:
+            ws.add(w)
+            
+        yield c, w
