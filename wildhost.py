@@ -31,21 +31,22 @@ def gen(s):
         yield f'{prefix}.{d}'
 
 
-def is_wc(s):
+def resolves_random(s):
     return resolves(f'{uuid1().hex}.{s}')
 
 
 def check(s):
     for c in gen(s):
-        if is_wc(c):
+        if resolves_random(c):
             return s, c
     return s, None
 
 
-def check_static(c, ws):
+def check_static(s, ws):
     for w in ws:
-        if c.endswith(f'.{w}'):
-            return w
+        if s.endswith(f'.{w}'):
+            return s, w
+    return s, None
 
 
 def check_all(l):
@@ -54,11 +55,9 @@ def check_all(l):
     for c in set(l):
         w = check_static(c, ws)
         if w:
-            print('static')
             yield c, w
             continue
         
-        print('network')
         w = check(c)
         if w:
             ws.add(w)
