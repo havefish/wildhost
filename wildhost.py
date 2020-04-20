@@ -8,6 +8,7 @@ from uuid import uuid1
 
 import tldextract
 
+ws = set()
 
 def resolves(s):
     try:
@@ -38,28 +39,23 @@ def resolves_random(s):
 def check(s):
     for c in gen(s):
         if resolves_random(c):
-            return s, c
-    return s, None
+            return c
 
 
 def check_static(s, ws):
     for w in ws:
         if s.endswith(f'.{w}'):
-            return s, w
-    return s, None
+            return w
 
 
-def check_all(l):
-    ws = set()
-    
-    for c in set(l):
-        w = check_static(c, ws)
-        if w:
-            yield c, w
-            continue
-        
-        w = check(c)
-        if w:
-            ws.add(w)
-            
-        yield c, w
+def check_cached(s):
+    w = check_static(s, ws)
+    if w:
+        return w
+
+    w = check(s)
+    if not w:
+        return
+
+    ws.add(w)
+    return w
