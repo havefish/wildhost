@@ -42,14 +42,14 @@ def check_fresh(s):
             return c
 
 
-def check_cache(s, ws):
+def check_cache(s):
     for w in ws:
         if s.endswith(f'.{w}'):
             return w
 
 
 def check(s):
-    w = check_cache(s, ws)
+    w = check_cache(s)
     if w:
         return w
 
