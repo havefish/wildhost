@@ -9,3 +9,6 @@ class TestWildhost(unittest.TestCase):
 
     def test_resolves_invalid(self):
         assert not wildhost.resolves('xxxx.google.com')
+
+    def test_resolves_random(self):
+        assert not wildhost.resolves_random('google.com')
