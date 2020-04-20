@@ -52,4 +52,4 @@ In such cases, when in doubt, use the `wildcard.check_fresh` function to ignore 
 
 This will return `None` if it is in fact not a wildcard.
 
-> `check_fresh` needs to make network requests, where as `check` cahces the results and is very fast. Choose one that is suitable for the problem at hand.
+> `check_fresh` needs to make network requests, where as `check` caches the results and is very fast. Choose one that is suitable for the problem at hand.
