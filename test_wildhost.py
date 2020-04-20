@@ -9,6 +9,15 @@ class TestWildhost(TestCase):
     def setUp(self):
         wildhost.ws.clear()
 
+    def test_gen(self):
+        got = list(wildhost.gen('foo.bar.spam.com'))
+        expected = [
+            'spam.com',
+            'bar.spam.com',
+            'foo.bar.spam.com',
+        ]
+        assert got == expected
+
     def test_resolves_valid(self):
         assert wildhost.resolves('google.com')
 
