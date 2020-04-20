@@ -36,24 +36,24 @@ def resolves_random(s):
     return resolves(f'{uuid1().hex}.{s}')
 
 
-def check(s):
+def check_fresh(s):
     for c in gen(s):
         if resolves_random(c):
             return c
 
 
-def check_static(s, ws):
+def check_cache(s, ws):
     for w in ws:
         if s.endswith(f'.{w}'):
             return w
 
 
-def check_cached(s):
-    w = check_static(s, ws)
+def check(s):
+    w = check_cache(s, ws)
     if w:
         return w
 
-    w = check(s)
+    w = check_fresh(s)
     if not w:
         return
 
