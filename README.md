@@ -12,10 +12,10 @@ Import the module
 ```python
 >>> import wildhost
 ```
-Pass a domain name to the `check` function.
+Pass a hostname to the `check` function.
 
 ```python
->>> wildhost.check(hostname)
+>>> wildhost.check('foo.bar.domain.tld')
 ```
 
 If none of the levels of the name are wildcards, `None` will be returned.
@@ -30,3 +30,26 @@ For a wildcard name, the _lowest_ level wildcard name will be returned.
 >>> wildhost.check('foo.bar.spam.grok.sharefile.com')
 'sharefile.com'
 ```
+
+## Caching
+The module caches the wildcard results and uses them in further checks. For example:
+
+```python
+>>> wildhost.check('foo.bar.spam.grok.sharefile.com')  # this will be a fresh check
+'sharefile.com'
+>>> wildhost.check('boom.blast.sharefile.com')  # this will use the cache
+'sharefile.com'
+```
+
+Once `sharefile.com` is known to be a wildcard, any further subdomains of `sharefile.com` will be evaluated as wildcards as well. This is determined from a static check and therefore very fast.
+
+However, there is a caveat. In an _unlikely_ scenario, `api.sharefile.com` will be missed, if it happens to be a valid subdomain.
+
+In such cases, when in doubt, use the `wildcard.check_fresh` function to ignore the cache.
+```python
+>>> wildcard.check_fresh('api.sharefile.com')
+```
+
+This will return `None` if it is in fact not a wildcard.
+
+> `check_fresh` needs to make network requests, where as `check` cahces the results and is very fast. Choose one that is suitable for the problem at hand.
