@@ -12,3 +12,6 @@ class TestWildhost(unittest.TestCase):
 
     def test_resolves_random(self):
         assert not wildhost.resolves_random('google.com')
+
+    def test_check_fresh(self):
+        assert not wildhost.check_fresh('mail.google.com')
