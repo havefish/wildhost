@@ -1,8 +1,8 @@
 # Wildhost
 
 [![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/bunnymq.svg)](https://pypi.python.org/pypi/bunnymq/)
-[![PyPI version fury.io](https://badge.fury.io/py/wildhost.svg)](https://pypi.python.org/pypi/bunnymq/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/wildhost.svg)](https://pypi.python.org/pypi/wildhost/)
+[![PyPI version fury.io](https://badge.fury.io/py/wildhost.svg)](https://pypi.python.org/pypi/wildhost/)
 
 Checks wildcard domain names.
 
