@@ -4,6 +4,8 @@ import wildhost
 
 
 class TestWildhost(TestCase):
+    'Tests the `wildhost` module. Some of the tests are functional tests and need to contact a DNS server.'
+
     def setUp(self):
         wildhost.ws.clear()
 
