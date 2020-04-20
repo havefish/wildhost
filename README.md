@@ -31,7 +31,7 @@ For a wildcard name, the _lowest_ level wildcard name will be returned.
 'sharefile.com'
 ```
 
-## Caching
+## Performance
 The module caches the wildcard results and uses them in further checks. For example:
 
 ```python
@@ -50,6 +50,6 @@ In such cases, when in doubt, use the `wildcard.check_fresh` function to ignore 
 >>> wildcard.check_fresh('api.sharefile.com')
 ```
 
-This will return `None` if it is in fact not a wildcard.
+This will return `None` if it is, in fact, not a wildcard.
 
 > `check_fresh` needs to make network requests, where as `check` caches the results and is very fast. Choose one that is suitable for the problem at hand.
